@@ -1,0 +1,83 @@
+<div class="container">
+  <h1>Application Form</h1>
+
+  <div class="card">
+    @if (!summary) {
+    <p-stepper [value]="1" [linear]="true">
+      <p-step-item [value]="1">
+        <p-step>Loan Info</p-step>
+        <p-step-panel>
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex flex-col h-48">
+              <div
+                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+              >
+                <app-loan-info-form />
+              </div>
+            </div>
+            <div class="py-6">
+              <p-button label="Next" (onClick)="activateCallback(2)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+      </p-step-item>
+
+      <p-step-item [value]="2">
+        <p-step>Personal Info</p-step>
+        <p-step-panel>
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex flex-col h-48">
+              <div
+                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+              >
+                <app-personal-info-form />
+              </div>
+            </div>
+            <div class="flex py-6 gap-2">
+              <p-button
+                label="Back"
+                severity="secondary"
+                (onClick)="activateCallback(1)"
+              />
+              <p-button label="Next" (onClick)="activateCallback(3)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+      </p-step-item>
+
+      <p-step-item [value]="3">
+        <p-step>Regular Income Info</p-step>
+        <p-step-panel>
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex flex-col h-48">
+              <div
+                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+              >
+                <app-regular-income-info-form />
+              </div>
+            </div>
+            <div class="py-6">
+              <p-button
+                label="Back"
+                severity="secondary"
+                (onClick)="activateCallback(2)"
+              />
+              <p-button label="Show Summary" (onClick)="showSummary()" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+      </p-step-item>
+    </p-stepper>
+    } @else {
+      <h2>Loan Info</h2>
+      <app-loan-info-form [readonly]="true" />
+      <h2>Personal Info</h2>
+      <app-personal-info-form [readonly]="true" />
+      <h2>Regular Income Info</h2>
+      <app-regular-income-info-form [readonly]="true" />
+
+      <p-button label="Apply" (onClick)="applyLoan()" />
+
+    }
+  </div>
+</div>

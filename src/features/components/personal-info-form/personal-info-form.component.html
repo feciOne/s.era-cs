@@ -1,0 +1,123 @@
+<form [formGroup]="form" class="card flex justify-center">
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="firstName"
+      class="w-full"
+      [tabindex]="1"
+      autocomplete="off"
+    />
+    <label for="firstName">First Name</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="lastName"
+      class="w-full"
+      [tabindex]="2"
+      autocomplete="off"
+    />
+    <label for="lastName">Last Name</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-datepicker
+      formControlName="dateOfBirth"
+      styleClass="w-full"
+      showIcon
+      iconDisplay="input"
+      [tabindex]="3"
+      [appendTo]="'body'"
+    />
+    <label for="dateOfBirth">Date of Birth</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="identityNumber"
+      class="w-full"
+      [tabindex]="4"
+      autocomplete="off"
+    />
+    <label for="identityNumber">Identity Number</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in" class="w-full">
+    <p-select
+      inputId="maritalStatus"
+      formControlName="maritalStatus"
+      [options]="maritalStatuses"
+      styleClass="w-full"
+      [tabindex]="5"
+      [appendTo]="'body'"
+    />
+    <label for="maritalStatus">Marital Status</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="email"
+      class="w-full"
+      [tabindex]="6"
+      autocomplete="off"
+    />
+    <label for="email">Email Address</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="phoneNumber"
+      class="w-full"
+      [tabindex]="7"
+      autocomplete="off"
+    />
+    <label for="phoneNumber">Phone Number</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <textarea
+      id="address"
+      cols="30"
+      rows="5"
+      pTextarea
+      formControlName="address"
+      class="w-full"
+      [tabindex]="8"
+      autocomplete="off"
+    ></textarea>
+    <label for="address">Address</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in" class="w-full">
+    <p-select
+      inputId="city"
+      formControlName="city"
+      [options]="cities"
+      styleClass="w-full"
+      [tabindex]="9"
+      [appendTo]="'body'"
+    />
+    <label for="city">City</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="zipCode"
+      class="w-full"
+      [tabindex]="10"
+      autocomplete="off"
+    />
+    <label for="zipCode">Zip Code</label>
+  </p-floatlabel>
+</form>

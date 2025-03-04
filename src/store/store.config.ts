@@ -1,0 +1,46 @@
+import { NgxsConfig } from '@ngxs/store';
+import { NgxsDevtoolsOptions } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginOptions } from '@ngxs/logger-plugin';
+import { NgxsStoragePluginOptions } from '@ngxs/storage-plugin';
+
+import { ApplicationFormStates } from './application-form';
+
+export const STATES_MODULES = [...ApplicationFormStates];
+
+export const OPTIONS_CONFIG: Partial<NgxsConfig> = {
+  /**
+   * Run in development mode. This will add additional debugging features:
+   * - Object.freeze on the state and actions to guarantee immutability
+   * todo: you need set production mode
+   * import { environment } from '@env';
+   * developmentMode: !environment.production
+   */
+  developmentMode: true,
+};
+
+export const LOCAL_STORAGE_CONFIG: NgxsStoragePluginOptions = {
+  /**
+   * Key for the state in local storage. Default is '@State'
+   */
+  keys: '*', // all states in local storage
+};
+
+export const DEVTOOLS_REDUX_CONFIG: NgxsDevtoolsOptions = {
+  /**
+   * Whether the dev tools is enabled or note. Useful for setting during production.
+   * todo: you need set production mode
+   * import { environment } from '@env';
+   * disabled: environment.production
+   */
+  disabled: false
+};
+
+export const LOGGER_CONFIG: NgxsLoggerPluginOptions = {
+  /**
+   * Disable the logger. Useful for prod mode..
+   * todo: you need set production mode
+   * import { environment } from '@env';
+   * disabled: environment.production
+   */
+  disabled: false
+};

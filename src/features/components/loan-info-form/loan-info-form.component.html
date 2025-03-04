@@ -1,0 +1,64 @@
+<form [formGroup]="form" class="card flex justify-center">
+  <p-floatlabel variant="in">
+    <p-inputnumber
+      inputId="loanAmount"
+      formControlName="loanAmount"
+      [classList]="['w-full']"
+      styleClass="w-full"
+      [useGrouping]="true"
+      [tabindex]="1"
+      autocomplete="off"
+    />
+    <label for="loanAmount">Amount ($)</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-inputnumber
+      inputId="loanTerm"
+      formControlName="loanTerm"
+      [classList]="['w-full']"
+      [useGrouping]="true"
+      [tabindex]="2"
+      autocomplete="off"
+    />
+    <label for="loanTerm">Term (Month)</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-inputnumber
+      inputId="interestRate"
+      formControlName="interestRate"
+      [classList]="['w-full']"
+      [useGrouping]="true"
+      mode="decimal"
+      maxFractionDigits="2"
+      [tabindex]="3"
+      autocomplete="off"
+    />
+    <label for="interestRate">Interest Rate</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in" class="w-full">
+    <p-select
+      inputId="loanType"
+      formControlName="loanType"
+      [options]="loanTypes"
+      styleClass="w-full"
+      [tabindex]="4"
+      [appendTo]="'body'"
+    />
+    <label for="loanType">Type</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in" class="w-full">
+    <p-select
+      inputId="loanPurpose"
+      formControlName="loanPurpose"
+      [options]="loanPurposes"
+      styleClass="w-full"
+      [tabindex]="5"
+      [appendTo]="'body'"
+    />
+    <label for="loanPurpose">Purpose</label>
+  </p-floatlabel>
+</form>

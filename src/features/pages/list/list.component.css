@@ -1,0 +1,16 @@
+h1 {
+  color: dimgray;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+h2 img {
+  position: relative;
+  top: 4px;
+}
+
+app-table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,58 @@
+{
+  "applications": [
+    {
+      "loanInfo": {
+        "loanAmount": 150000,
+        "loanTerm": 36,
+        "interestRate": 2.5,
+        "loanType": "Vehicle",
+        "loanPurpose": "Other"
+      },
+      "personalInfo": {
+        "firstName": "Yılmaz",
+        "lastName": "Demirci",
+        "dateOfBirth": "1987-01-22T22:00:00.000Z",
+        "identityNumber": "60994355188",
+        "maritalStatus": "Married",
+        "email": "demirciyilmaz@gmail.com",
+        "phoneNumber": "5057175995",
+        "address": "Güneştepe Mah. Konak Sok. No:17 D: 1\nGüngören",
+        "city": "İstanbul",
+        "zipCode": "34164"
+      },
+      "regularIncomeInfo": {
+        "employmentStatus": "Unemployed",
+        "employerName": "",
+        "monthlyIncome": 1000
+      },
+      "id": 1
+    },
+    {
+      "loanInfo": {
+        "loanAmount": 155000,
+        "loanTerm": 36,
+        "interestRate": 2.5,
+        "loanType": "Vehicle",
+        "loanPurpose": "Other"
+      },
+      "personalInfo": {
+        "firstName": "Yılmaz",
+        "lastName": "Demirci",
+        "dateOfBirth": "1987-01-22T22:00:00.000Z",
+        "identityNumber": "60994355188",
+        "maritalStatus": "Married",
+        "email": "demirciyilmaz@gmail.com",
+        "phoneNumber": "5057175995",
+        "address": "Güneştepe Mah. Konak Sok. No:17 D: 1\nGüngören",
+        "city": "İstanbul",
+        "zipCode": "34164"
+      },
+      "regularIncomeInfo": {
+        "employmentStatus": "Employed",
+        "employerName": "Smartera",
+        "monthlyIncome": 4000
+      },
+      "id": 2
+    }
+  ]
+}

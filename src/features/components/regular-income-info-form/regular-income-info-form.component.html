@@ -1,0 +1,37 @@
+<form [formGroup]="form" class="card flex justify-center">
+  <p-floatlabel variant="in" class="w-full">
+    <p-select
+      inputId="employmentStatus"
+      formControlName="employmentStatus"
+      [options]="employmentStatuses"
+      styleClass="w-full"
+      [tabindex]="1"
+      [appendTo]="'body'"
+    />
+    <label for="employmentStatus">Employment Status</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input
+      type="text"
+      pInputText
+      formControlName="employerName"
+      class="w-full"
+      [tabindex]="2"
+      autocomplete="off"
+    />
+    <label for="employerName">Employer Name</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-inputnumber
+      inputId="monthlyIncome"
+      formControlName="monthlyIncome"
+      [classList]="['w-full']"
+      [useGrouping]="true"
+      [tabindex]="3"
+      autocomplete="off"
+    />
+    <label for="monthlyIncome">Monthly Income ($)</label>
+  </p-floatlabel>
+</form>
