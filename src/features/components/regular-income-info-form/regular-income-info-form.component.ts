@@ -66,7 +66,7 @@ export class RegularIncomeInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
-    const disabled = this.disabled;
+    const disabled = this.disabled();
 
     this.form = this.fb.group({
       employmentStatus: [{ value: null, disabled }, Validators.required],

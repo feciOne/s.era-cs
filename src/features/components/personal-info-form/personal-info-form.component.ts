@@ -71,7 +71,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
-    const disabled = this.disabled;
+    const disabled = this.disabled();
 
     this.form = this.fb.group({
       firstName: [{ value: '', disabled }, Validators.required],

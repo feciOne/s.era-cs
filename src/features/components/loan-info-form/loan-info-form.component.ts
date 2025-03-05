@@ -67,7 +67,7 @@ export class LoanInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
-    const disabled = this.disabled;
+    const disabled = this.disabled();
 
     this.form = this.fb.group({
       loanAmount: [{ value: '', disabled }, Validators.required],

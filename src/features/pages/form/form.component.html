@@ -70,11 +70,11 @@
     </p-stepper>
     } @else {
       <h2>Loan Info</h2>
-      <app-loan-info-form [readonly]="true" />
+      <app-loan-info-form [disabled]="true" />
       <h2>Personal Info</h2>
-      <app-personal-info-form [readonly]="true" />
+      <app-personal-info-form [disabled]="true" />
       <h2>Regular Income Info</h2>
-      <app-regular-income-info-form [readonly]="true" />
+      <app-regular-income-info-form [disabled]="true" />
 
       <p-button label="Apply" (onClick)="applyLoan()" />
 
