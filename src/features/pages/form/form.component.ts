@@ -7,6 +7,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CanComponentDeactivate } from '../../../core/guards/you-will-lost-your-progress.guard';
 
 import { Store } from '@ngxs/store';
 import { LoanInfoReset } from '../../../store/application-form/states/loan-info/loan-info.actions';
@@ -15,6 +16,7 @@ import { RegularIncomeInfoReset } from '../../../store/application-form/states/r
 
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { LoanInfoFormComponent } from '../../components/loan-info-form/loan-info-form.component';
 import { PersonalInfoFormComponent } from '../../components/personal-info-form/personal-info-form.component';
@@ -28,6 +30,7 @@ import type { IApplication } from '../../../shared/models';
     ReactiveFormsModule,
     StepperModule,
     ButtonModule,
+    ConfirmDialogModule,
     LoanInfoFormComponent,
     PersonalInfoFormComponent,
     RegularIncomeInfoFormComponent,
@@ -36,7 +39,7 @@ import type { IApplication } from '../../../shared/models';
   styleUrl: './form.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent implements OnDestroy {
+export class FormComponent implements CanComponentDeactivate, OnDestroy {
   #store = inject(Store);
   #http = inject(HttpClient);
   #router = inject(Router);
@@ -67,6 +70,10 @@ export class FormComponent implements OnDestroy {
         this.summary = false;
         this.#router.navigate(['/list']);
       });
+  }
+
+  canDeactivate(): boolean {
+    return confirm('You will lost your progress. Are you sure?');
   }
 
   ngOnDestroy(): void {

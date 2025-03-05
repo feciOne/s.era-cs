@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { YouWillLostYourProgressGuard } from './core/guards/you-will-lost-your-progress.guard';
+
 import { MainLayoutComponent } from './core/components/layouts/main-layout.component';
 import { HomeComponent } from './features/pages/home/home.component';
 import { ListComponent } from './features/pages/list/list.component';
@@ -13,7 +15,7 @@ export const routes: Routes = [
       children: [
         { path: '', pathMatch: 'full', component: HomeComponent },
         { path: 'list', component: ListComponent },
-        { path: 'form', component: FormComponent },
+        { path: 'form', component: FormComponent, canDeactivate: [YouWillLostYourProgressGuard] },
       ],
     },
     {
