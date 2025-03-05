@@ -71,7 +71,10 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.buildForm();
     this.personalInfo$.subscribe((data) => {
-      this.form.patchValue(data);
+      this.form.patchValue({
+        ...data,
+        dateOfBirth: new Date(data.dateOfBirth),
+      });
       this.form.updateValueAndValidity();
     });
 
