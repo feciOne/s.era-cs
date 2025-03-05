@@ -9,21 +9,25 @@ import { FormComponent } from './features/pages/form/form.component';
 import { NotFoundComponent } from './features/pages/not-found/not-found.component';
 
 export const routes: Routes = [
-    {
-      path: '',
-      component: MainLayoutComponent,
-      children: [
-        { path: '', pathMatch: 'full', component: HomeComponent },
-        { path: 'list', component: ListComponent },
-        { path: 'form', component: FormComponent, canDeactivate: [YouWillLostYourProgressGuard] },
-      ],
-    },
-    {
-      path: 'not-found',
-      component: NotFoundComponent,
-    },
-    {
-      path: '**',
-      redirectTo: '/not-found',
-    },
-  ];
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: HomeComponent },
+      { path: 'list', component: ListComponent },
+      {
+        path: 'form',
+        component: FormComponent,
+        canDeactivate: [YouWillLostYourProgressGuard],
+      },
+    ],
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found',
+  },
+];

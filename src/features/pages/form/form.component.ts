@@ -43,11 +43,9 @@ export class FormComponent implements CanComponentDeactivate, OnDestroy {
   #store = inject(Store);
   #http = inject(HttpClient);
   #router = inject(Router);
-  summary = false;
 
-  showSummary(): void {
-    this.summary = true;
-  }
+  formValidtyMatrix = [false, false, false];
+  summary = false;
 
   applyLoan(): void {
     const applicationFormData: IApplication = {
@@ -70,6 +68,14 @@ export class FormComponent implements CanComponentDeactivate, OnDestroy {
         this.summary = false;
         this.#router.navigate(['/list']);
       });
+  }
+
+  updateFormValidity(index: number, isValid: boolean): void {
+    this.formValidtyMatrix[index] = isValid;
+  }
+
+  showSummary(): void {
+    this.summary = !this.summary;
   }
 
   canDeactivate(): boolean {

@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   input,
   OnDestroy,
   OnInit,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -21,6 +23,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
+
+import { listenToFormChanges } from '../../../shared/utils/form.utils';
 
 import {
   LoanInfoStateModel,
@@ -46,7 +50,9 @@ import { Observable } from 'rxjs';
 })
 export class LoanInfoFormComponent implements OnInit, OnDestroy {
   disabled = input<boolean>(false);
+  isFormValid = output<boolean>();
   #store = inject(Store);
+  #destroyRef = inject(DestroyRef);
   form!: FormGroup;
 
   loanTypes = loanTypes;
@@ -64,6 +70,8 @@ export class LoanInfoFormComponent implements OnInit, OnDestroy {
       this.form.patchValue(data);
       this.form.updateValueAndValidity();
     });
+
+    listenToFormChanges(this.form, this.isFormValid, this.#destroyRef);
   }
 
   private buildForm(): void {

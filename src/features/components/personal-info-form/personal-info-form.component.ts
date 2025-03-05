@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   input,
   OnDestroy,
   OnInit,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -23,6 +25,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
+
+import { listenToFormChanges } from '../../../shared/utils/form.utils';
 
 import {
   PersonalInfoStateModel,
@@ -50,7 +54,9 @@ import { Observable } from 'rxjs';
 })
 export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   disabled = input<boolean>(false);
+  isFormValid = output<boolean>();
   #store = inject(Store);
+  #destroyRef = inject(DestroyRef);
   form!: FormGroup;
 
   maritalStatuses = maritalStatuses;
@@ -68,6 +74,8 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
       this.form.patchValue(data);
       this.form.updateValueAndValidity();
     });
+
+    listenToFormChanges(this.form, this.isFormValid, this.#destroyRef);
   }
 
   private buildForm(): void {

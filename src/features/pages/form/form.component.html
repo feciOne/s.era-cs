@@ -12,11 +12,17 @@
               <div
                 class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
               >
-                <app-loan-info-form />
+                <app-loan-info-form
+                  (isFormValid)="updateFormValidity(0, $event)"
+                />
               </div>
             </div>
             <div class="py-6">
-              <p-button label="Next" (onClick)="activateCallback(2)" />
+              <p-button
+                label="Next"
+                (onClick)="formValidtyMatrix[0] ? activateCallback(2) : null"
+                [disabled]="!formValidtyMatrix[0]"
+              />
             </div>
           </ng-template>
         </p-step-panel>
@@ -30,7 +36,9 @@
               <div
                 class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
               >
-                <app-personal-info-form />
+                <app-personal-info-form
+                  (isFormValid)="updateFormValidity(1, $event)"
+                />
               </div>
             </div>
             <div class="flex py-6 gap-2">
@@ -39,7 +47,11 @@
                 severity="secondary"
                 (onClick)="activateCallback(1)"
               />
-              <p-button label="Next" (onClick)="activateCallback(3)" />
+              <p-button
+                label="Next"
+                (onClick)="formValidtyMatrix[1] ? activateCallback(3) : null"
+                [disabled]="!formValidtyMatrix[1]"
+              />
             </div>
           </ng-template>
         </p-step-panel>
@@ -53,7 +65,9 @@
               <div
                 class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
               >
-                <app-regular-income-info-form />
+                <app-regular-income-info-form
+                  (isFormValid)="updateFormValidity(2, $event)"
+                />
               </div>
             </div>
             <div class="py-6">
@@ -62,21 +76,26 @@
                 severity="secondary"
                 (onClick)="activateCallback(2)"
               />
-              <p-button label="Show Summary" (onClick)="showSummary()" />
+              <p-button
+                label="Show Summary"
+                (onClick)="formValidtyMatrix[2] ? showSummary() : null"
+                [disabled]="!formValidtyMatrix[2]"
+              />
             </div>
           </ng-template>
         </p-step-panel>
       </p-step-item>
     </p-stepper>
     } @else {
-      <h2>Loan Info</h2>
-      <app-loan-info-form [disabled]="true" />
-      <h2>Personal Info</h2>
-      <app-personal-info-form [disabled]="true" />
-      <h2>Regular Income Info</h2>
-      <app-regular-income-info-form [disabled]="true" />
+    <h2>Loan Info</h2>
+    <app-loan-info-form [disabled]="true" />
+    <h2>Personal Info</h2>
+    <app-personal-info-form [disabled]="true" />
+    <h2>Regular Income Info</h2>
+    <app-regular-income-info-form [disabled]="true" />
 
-      <p-button label="Apply" (onClick)="applyLoan()" />
+    <p-button label="Edit" severity="secondary" (onClick)="showSummary()" />
+    <p-button label="Apply" (onClick)="applyLoan()" />
     }
   </div>
 </div>

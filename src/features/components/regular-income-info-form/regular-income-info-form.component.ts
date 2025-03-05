@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   input,
   OnDestroy,
   OnInit,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -22,6 +24,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+
+import { listenToFormChanges } from '../../../shared/utils/form.utils';
 
 import {
   RegularIncomeInfoStateModel,
@@ -47,7 +51,9 @@ import { Observable } from 'rxjs';
 })
 export class RegularIncomeInfoFormComponent implements OnInit, OnDestroy {
   disabled = input<boolean>(false);
+  isFormValid = output<boolean>();
   #store = inject(Store);
+  #destroyRef = inject(DestroyRef);
   form!: FormGroup;
 
   employmentStatuses = employmentStatuses;
@@ -63,6 +69,8 @@ export class RegularIncomeInfoFormComponent implements OnInit, OnDestroy {
       this.form.patchValue(data);
       this.form.updateValueAndValidity();
     });
+
+    listenToFormChanges(this.form, this.isFormValid, this.#destroyRef);
   }
 
   private buildForm(): void {
