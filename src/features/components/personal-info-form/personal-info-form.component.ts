@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -49,7 +49,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalInfoFormComponent implements OnInit, OnDestroy {
-  @Input() readonly = false;
+  disabled = input<boolean>(false);
   #store = inject(Store);
   form!: FormGroup;
 
@@ -71,40 +71,33 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
+    const disabled = this.disabled;
+
     this.form = this.fb.group({
-      firstName: [{ value: '', disabled: this.readonly }, Validators.required],
-      lastName: [{ value: '', disabled: this.readonly }, Validators.required],
-      dateOfBirth: [
-        { value: null, disabled: this.readonly },
-        Validators.required,
-      ],
+      firstName: [{ value: '', disabled }, Validators.required],
+      lastName: [{ value: '', disabled }, Validators.required],
+      dateOfBirth: [{ value: null, disabled }, Validators.required],
       identityNumber: [
-        { value: '', disabled: this.readonly },
+        { value: '', disabled },
         [
           Validators.required,
           Validators.minLength(11),
           Validators.maxLength(11),
         ],
       ],
-      maritalStatus: [
-        { value: null, disabled: this.readonly },
-        Validators.required,
-      ],
-      email: [
-        { value: '', disabled: this.readonly },
-        [Validators.required, Validators.email],
-      ],
+      maritalStatus: [{ value: null, disabled }, Validators.required],
+      email: [{ value: '', disabled }, [Validators.required, Validators.email]],
       phoneNumber: [
-        { value: '', disabled: this.readonly },
+        { value: '', disabled },
         [Validators.required, Validators.pattern('^[0-9]*$')],
       ],
       address: [
-        { value: '', disabled: this.readonly },
+        { value: '', disabled },
         [Validators.required, Validators.minLength(10)],
       ],
-      city: [{ value: null, disabled: this.readonly }, Validators.required],
+      city: [{ value: null, disabled }, Validators.required],
       zipCode: [
-        { value: '', disabled: this.readonly },
+        { value: '', disabled },
         [Validators.required, Validators.pattern('^[0-9]*$')],
       ],
     });

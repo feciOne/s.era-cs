@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -46,7 +46,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegularIncomeInfoFormComponent implements OnInit, OnDestroy {
-  @Input() readonly = false;
+  disabled = input<boolean>(false);
   #store = inject(Store);
   form!: FormGroup;
 
@@ -66,16 +66,12 @@ export class RegularIncomeInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
+    const disabled = this.disabled;
+
     this.form = this.fb.group({
-      employmentStatus: [
-        { value: null, disabled: this.readonly },
-        Validators.required,
-      ],
-      employerName: [{ value: '', disabled: this.readonly }],
-      monthlyIncome: [
-        { value: '', disabled: this.readonly },
-        Validators.required,
-      ],
+      employmentStatus: [{ value: null, disabled }, Validators.required],
+      employerName: [{ value: '', disabled }],
+      monthlyIncome: [{ value: '', disabled }, Validators.required],
     });
   }
 

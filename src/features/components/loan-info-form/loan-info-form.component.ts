@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -45,14 +45,16 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoanInfoFormComponent implements OnInit, OnDestroy {
-  @Input() readonly = false;
+  disabled = input<boolean>(false);
   #store = inject(Store);
   form!: FormGroup;
 
   loanTypes = loanTypes;
   loanPurposes = loanPurposes;
-  
-  loanInfo$: Observable<LoanInfoStateModel> = this.#store.select((state) => state.loanInfo);
+
+  loanInfo$: Observable<LoanInfoStateModel> = this.#store.select(
+    (state) => state.loanInfo
+  );
 
   constructor(private fb: NonNullableFormBuilder) {}
 
@@ -65,12 +67,14 @@ export class LoanInfoFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(): void {
+    const disabled = this.disabled;
+
     this.form = this.fb.group({
-      loanAmount: [{ value: '', disabled: this.readonly }, Validators.required],
-      loanTerm: [{ value: '', disabled: this.readonly }, Validators.required],
-      interestRate: [{ value: '', disabled: this.readonly }, Validators.required],
-      loanType: [{ value: null, disabled: this.readonly }, Validators.required],
-      loanPurpose: [{ value: null, disabled: this.readonly }, Validators.required],
+      loanAmount: [{ value: '', disabled }, Validators.required],
+      loanTerm: [{ value: '', disabled }, Validators.required],
+      interestRate: [{ value: '', disabled }, Validators.required],
+      loanType: [{ value: null, disabled }, Validators.required],
+      loanPurpose: [{ value: null, disabled }, Validators.required],
     });
   }
 
